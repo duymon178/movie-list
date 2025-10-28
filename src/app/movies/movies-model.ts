@@ -3,4 +3,5 @@ export interface MovieModel {
   name: string;
   urlName: string;
   description: string;
+  favorite: boolean;
 }

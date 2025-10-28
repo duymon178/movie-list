@@ -1,1 +1,13 @@
-<p>movie works!</p>
+<div class="movie">
+  <h4 class="movie__name" [class.movie__name--fav]="movie().favorite">{{ movieName() }}</h4>
+  <div class="movie__des">{{ movieDescription() }}</div>
+
+  <button
+    type="button"
+    class="movie__like-btn"
+    [class.movie__like-btn--fav]="!movie().favorite"
+    (click)="toggleFavorite.emit()"
+  >
+    {{ movie().favorite ? 'Unfavorite' : 'Favorite' }}
+  </button>
+</div>

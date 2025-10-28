@@ -1,0 +1,74 @@
+{
+  "movies": [
+    {
+      "id": "1",
+      "name": "The Shawshank Redemption",
+      "urlName": "the-shawshank-redemption",
+      "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+      "favorite": false
+    },
+    {
+      "id": "2",
+      "name": "The Godfather",
+      "urlName": "the-godfather",
+      "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+      "favorite": false
+    },
+    {
+      "id": "3",
+      "name": "The Dark Knight",
+      "urlName": "the-dark-knight",
+      "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+      "favorite": false
+    },
+    {
+      "id": "4",
+      "name": "Pulp Fiction",
+      "urlName": "pulp-fiction",
+      "description": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+      "favorite": false
+    },
+    {
+      "id": "5",
+      "name": "Forrest Gump",
+      "urlName": "forrest-gump",
+      "description": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75.",
+      "favorite": false
+    },
+    {
+      "id": "6",
+      "name": "Inception",
+      "urlName": "inception",
+      "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+      "favorite": false
+    },
+    {
+      "id": "7",
+      "name": "The Matrix",
+      "urlName": "the-matrix",
+      "description": "A computer programmer discovers that reality as he knows it is a simulation created by machines, and joins a rebellion to break free.",
+      "favorite": false
+    },
+    {
+      "id": "8",
+      "name": "Schindler's List",
+      "urlName": "schindlers-list",
+      "description": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
+      "favorite": false
+    },
+    {
+      "id": "9",
+      "name": "Goodfellas",
+      "urlName": "goodfellas",
+      "description": "The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners Jimmy Conway and Tommy DeVito.",
+      "favorite": false
+    },
+    {
+      "id": "10",
+      "name": "Fight Club",
+      "urlName": "fight-club",
+      "description": "An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.",
+      "favorite": false
+    }
+  ]
+}

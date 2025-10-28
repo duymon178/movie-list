@@ -1,36 +1,38 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
-  OnDestroy,
   OnInit,
   signal,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { catchError, debounceTime, EMPTY, Observable, Subscription, switchMap, tap } from 'rxjs';
+import { catchError, debounceTime, EMPTY, Observable, startWith, switchMap, tap } from 'rxjs';
 import { MoviesSkeleton } from '../ui/skeleton/movies-skeleton/movies-skeleton';
-import { Movie } from './movie/movie';
+import { MovieList } from './movie-list/movie-list';
 import { MoviesApi } from './movies-api';
 import { MovieModel } from './movies-model';
 
 @Component({
   selector: 'app-movies',
-  imports: [Movie, MoviesSkeleton, FormsModule, ReactiveFormsModule],
+  imports: [MovieList, MoviesSkeleton, FormsModule, ReactiveFormsModule],
   templateUrl: './movies.html',
   styleUrl: './movies.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Movies implements OnInit, OnDestroy {
+export class Movies implements OnInit {
   moviesApi = inject(MoviesApi);
+  destroyRef = inject(DestroyRef);
 
   isLoading = signal(false);
   movies = signal<MovieModel[]>([]);
 
   moviesResult$!: Observable<MovieModel[]>;
-  sub?: Subscription;
 
   searchTerm = new FormControl('', { nonNullable: true });
   searchTerm$ = this.searchTerm.valueChanges.pipe(
+    startWith(''),
     debounceTime(400),
     tap(() => this.isLoading.set(true)),
   );
@@ -42,7 +44,7 @@ export class Movies implements OnInit, OnDestroy {
 
   declareMovieResult(): void {
     this.moviesResult$ = this.searchTerm$.pipe(
-      debounceTime(2000),
+      debounceTime(1000),
       switchMap((term: string) => {
         return this.moviesApi.getMovies(term).pipe(
           catchError(() => {
@@ -55,14 +57,11 @@ export class Movies implements OnInit, OnDestroy {
   }
 
   subscriptions(): void {
-    this.sub = this.moviesResult$.subscribe((movies: MovieModel[]) => {
-      this.movies.set(movies);
-      this.isLoading.set(false);
-      console.log(movies);
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+    this.moviesResult$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((movies: MovieModel[]) => {
+        this.movies.set(movies);
+        this.isLoading.set(false);
+      });
   }
 }

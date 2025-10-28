@@ -1,0 +1,7 @@
+<div class="flex flex-col">
+  <button type="button" class="clear-btn" (click)="clearFavs()">Clear favorites</button>
+
+  @for (mv of moviesList(); track mv.id) {
+    <app-movie [movie]="mv" (toggleFavorite)="onToggleFavorite(mv.id)" />
+  }
+</div>

@@ -3,7 +3,5 @@
 @if (isLoading()) {
   <app-movies-skeleton />
 } @else {
-  @for (mv of movies(); track $index) {
-    <app-movie [movie]="mv" />
-  }
+  <app-movie-list [movies]="movies()"  />
 }
